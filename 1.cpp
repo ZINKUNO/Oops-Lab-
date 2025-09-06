@@ -17,7 +17,7 @@ void checkEvenOdd()
     int n;
     cout << "Enter an integer: ";
     cin >> n;
-    cout << n << " is " << (isEven(n) ? "EVEN" : "ODD") << "\n\n";
+    cout << n << " is " << (isEven(n) ? "Even" : "Odd") << "\n\n";
 }
 
 // 2. Swap WITHOUT third variable 
