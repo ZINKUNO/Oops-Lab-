@@ -1,6 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// === Global variable example ===
+int value = 100;
+
 //    1. Friend function example with operator+
 class Complex
 {
@@ -18,7 +21,7 @@ public:
         cout << real << " + " << imag << "i" << endl;
     }
 
-    /* ---- friend that overloads + to add two Complex ---- */
+    // friend that overloads + to add two Complex 
     friend Complex operator+(const Complex &a, const Complex &b);
 };
 
@@ -28,13 +31,16 @@ Complex operator+(const Complex &a, const Complex &b)
     return Complex(a.real + b.real, a.imag + b.imag);
 }
 
-/* ------------- single inheritance ------------- */
+// single inheritance 
 class A
 {
 public:
+    static int valA; // static variable example
     void showA() { 
         cout << "A "; }
 };
+int A::valA = 10;
+
 class B : public A
 {
 public:
@@ -42,7 +48,7 @@ public:
         cout << "B "; }
 };
 
-/* ------------- multilevel inheritance ------------- */
+// multilevel inheritance 
 class C : public B
 {
 public:
@@ -50,7 +56,7 @@ public:
         cout << "C "; }
 };
 
-/* ------------- multiple inheritance ------------- */
+// multiple inheritance 
 class X
 {
 public:
@@ -69,7 +75,7 @@ public:
     void showZ() { cout << "Z "; }
 };
 
-/* ------------- hierarchical inheritance ------------- */
+// hierarchical inheritance 
 class D
 {
 public:
@@ -86,7 +92,7 @@ public:
     void showF() { cout << "F "; }
 };
 
-/* ------------- hybrid inheritance (multiple + hierarchical) ------------- */
+// hybrid inheritance (multiple + hierarchical) 
 class M
 {
 public:
@@ -124,6 +130,9 @@ int main()
     b.showB();
     cout << endl;
 
+    // Scope resolution to access static member
+    cout << "Static member of A: " << A::valA << endl;
+
     cout << "\n=== Multilevel inheritance (C inherits B inherits A) ===\n";
     C c;
     c.showA();
@@ -150,10 +159,15 @@ int main()
 
     cout << "\n=== Hybrid inheritance (Q inherits N,P which both inherit M) ===\n";
     Q q;
+    q.N::showM(); // scope resolution to access M from N branch
+    q.P::showM(); // scope resolution to access M from P branch
     q.showN();
     q.showP();
     q.showQ();
     cout << endl;
+
+    // Access global variable using scope resolution
+    cout << "Global variable value: " << ::value << endl;
 
     return 0;
 }
